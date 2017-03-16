@@ -1,34 +1,91 @@
-$(function(){
-  var value = [[],[]],
-  i=0;
-
-  $(".num").click(function(event) {
-    /* Act on the event */
-    console.log($(this).val());
-    value[i].push($(this).val());
-    console.log(value[i]);
-    
-  });
-  $(".operator").click(function(event) {
-    /* Act on the event */
-    console.log("operator "+ $(this).val() );
-    
-    cal(value[0].join(""),value[1].join(""),$(this).val())
-  
-    if (i===0) {
-      value[1]=[];
-      i=1;
-    }else {
-      value[0]=[];
-      i=0;
-    }
-  
-  
-  });
+var values = {
+        1: [],
+        2: []
+    },
+    oper = [],
+    i = 1,
+    count = -1;
+$(function() {
+    $(".num").click(function(event) {
+        values[i].push($(this).val());
+        $("#result").html(values[i].join(""))
+        console.log($(this).val() + "-->" + values[i].join("") + " values[" + i + "]");
+    });
+    $(".period").click(function(event) {
+      values[i].push($(this).val());
+    });
+    $(".operator").click(function(event) {
+        count++;
+        console.log("count = " + count);
+        oper.push($(this).val());
+        console.log(oper);
+        change(oper.length, count);
+    });
+    $("#resultSign").click(function(event) {
+        if (Array.isArray(values[1])) {
+            cal(values[1].join(""), values[2].join(""), oper[count]);
+        } else {
+            cal(values[1], values[2].join(""), oper[count]);
+        }
+    });
+    $("#delete").click(function(event) {
+        del();
+    })
 })
 
+function cal(a, b, operator) {
+    var results = 0;
+    switch (operator) {
+        case "*":
+            results = a * b;
+            console.log("case *" + " " + a + " " + b);
+            break;
+        case "/":
+            results = a / b;
+            console.log("case /" + " " + a + " " + b);
+            break;
+        case "-":
+            results = a - b;
+            console.log("Case -" + " " + a + " " + b);
+            break;
+        case "+":
+            results = Number(a) + Number(b);
+            console.log("case +" + " " + a + " " + b);
+            break;
+        case "%":
+            results = a % b;
+            console.log("case %" + " " + a + " " + b);
+            break;
+        default:
+            console.log("no case");
+    }
+    $("#result").html(results);
+    console.log(results);
+    return Number(results)
+}
 
-function cal (a,b,operator){
-  results = a + operator + b ;
-  console.log(results);
+function change(length) {
+    if (length === 1) { // NOTE: switches to values[2]
+        i = 2;
+    } else if (length > 1) { // NOTE: handels the cahining
+        if (Array.isArray(values[1])) {
+            values[1] = cal(values[1].join(""), values[2].join(""), oper[count - 1]);
+        } else {
+            values[1] = cal(values[1], values[2].join(""), oper[count - 1]);
+        }
+        // console.log(values[1]);
+        values[i].splice(0, values[i].length); // NOTE clears values[2]
+    }
+}
+
+function del() {
+    values = {
+        1: [],
+        2: []
+    };
+    oper = [];
+    i = 1;
+    count = -1;
+    $("#result").html("");
+    console.log("cleared");
 }
