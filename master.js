@@ -4,9 +4,13 @@ var values = {
     },
     oper = [],
     i = 1,
-    count = -1;
+    count = -1,
+    reset = false;
 $(function() {
     $(".num").click(function(event) {
+      if (reset) {
+        del();
+      }
         values[i].push($(this).val());
         $("#result").html(values[i].join(""))
         console.log($(this).val() + "-->" + values[i].join("") + " values[" + i + "]");
@@ -27,6 +31,7 @@ $(function() {
         } else {
             cal(values[1], values[2].join(""), oper[count]);
         }
+        reset = true;
     });
     $("#delete").click(function(event) {
         del();
@@ -86,6 +91,7 @@ function del() {
     oper = [];
     i = 1;
     count = -1;
+    reset = false;
     $("#result").html("");
     console.log("cleared");
 }
