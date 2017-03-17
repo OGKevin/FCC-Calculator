@@ -1,0 +1,25 @@
+{
+  "name": "FCC-Calculator",
+  "homepage": "https://github.com/OGKevin/FCC-Calculator",
+  "authors": [
+    "OGKevin <kevinhellemun@icloud.com>"
+  ],
+  "description": "fcc calculator project",
+  "main": "./index.html",
+  "keywords": [
+    "fcc",
+    "project",
+    "calculator"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1"
+  }
+}

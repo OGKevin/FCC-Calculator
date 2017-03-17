@@ -1,0 +1,34 @@
+{
+    "name": "fcc-calculator",
+    "version": "1.0.0",
+    "description": "fcc calculator project",
+    "main": "./index.hmtl",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/OGKevin/FCC-Calculator.git"
+    },
+    "keywords": [
+        "fcc",
+        "calculator",
+        "project"
+    ],
+    "author": "OGKevin <kevinhellemun@icloud.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/OGKevin/FCC-Calculator/issues"
+    },
+    "homepage": "https://github.com/OGKevin/FCC-Calculator#readme",
+    "devDependencies": {
+        "git-scripts": "^0.2.1",
+        "surge": "^0.18.0"
+    },
+
+    "git": {
+        "scripts": {
+            "pre-push": "surge --project ./ --domain ogkevincalculator.surge.sh"
+        }
+    }
+}
