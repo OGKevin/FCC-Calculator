@@ -1,5 +1,7 @@
 ## FCC Calculator
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/OGKevin/FCC-Calculator.svg)](https://greenkeeper.io/)
+
 As described on [FCC](https://www.freecodecamp.com/challenges/build-a-javascript-calculator) website the user should be able to:
 
 * Add, subtract, multiply and divide two numbers.
